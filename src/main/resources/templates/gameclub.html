@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <ol class="breadcrumb">
+        <a class="dropdown-item" href="/">Home</a>
+        <a class="dropdown-item" href="/computers">Computers</a>
+        <a class="dropdown-item" href="/playstations">Playstations</a>
+    </ol>
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <h1>Компьютерный клуб</h1>
+                <form class="form-horizontal" th:action="@{/gameclub/{id}/info(id=${gameclub.id})}"
+                      method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">Клубтың толык аты</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" disabled="disabled"
+                                       th:value="${gameclub.gameclubName + ' ' + gameclub.address}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">Ақпараттар</label>
+                            <div class="col-lg-10">
+                                <div th:each="computer: ${gameclub.computers}">
+                                    Моторы: <span th:text="${computer.computerName}"/> - <span th:text="${computer.numbers}"/>
+                                </div>
+                                <div th:each="playstation: ${gameclub.playstations}">
+                                    Компания: <span th:text="${playstation.playstationName}"/> - <span th:text="${playstation.numbers}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-2">
+                                <div class="input-group">
+                                    <select name="compId" class="form-control">
+                                        <option th:each="computer : ${computers}"
+                                                th:value="${computer.id}"
+                                                th:text="${computer.computerName}">Компьтерлер</option>
+                                    </select>
+                                    <br>
+                                    <select name="plId" class="form-control">
+                                        <option th:each="playstation : ${playstations}"
+                                                th:value="${playstation.id}"
+                                                th:text="${playstation.playstationName}">Плестейшндар</option>
+                                    </select>
+                                    <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">Қосу</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
+

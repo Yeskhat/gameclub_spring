@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <ol class="breadcrumb">
+        <a class="dropdown-item" href="/">Home</a>
+        <a class="dropdown-item" href="/computers">Computers</a>
+        <a class="dropdown-item" href="/playstations">Playstations</a>
+    </ol>
+    <div class="row justify-content-center">
+        <div class="form-group">
+            <form action="#" th:action="@{/playstations/}" th:object="${playstation}" method="post">
+                <label for="playstationName">Аты</label>
+                <select id="playstationName" name="playstationName" th:field="*{playstationName}" class="form-control">
+                    <option th:value="Playstation3">Playstation 3</option>
+                    <option th:value="Playstation4">Playstation 4</option>
+                    <option th:value="PlaystationPro">Playstation Pro</option>
+                </select>
+                <label for="numbers">Саны</label>
+                <select id="numbers" name="numbers" th:field="*{numbers}" class="form-control">
+                    <option th:value="15">15</option>
+                    <option th:value="18">18</option>
+                    <option th:value="25">25</option>
+                </select>
+                <br/>
+                <button type="submit" class="btn btn-primary">Сақтау</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
